@@ -180,4 +180,5 @@ def delete_model():
 # ---------- Run ----------
 if __name__ == "__main__":
     logger.info("Starting Flask app on %s:%d (templates=%s, static=%s)", HOST, PORT, TEMPLATES_DIR, STATIC_DIR)
-    app.run(host=HOST, port=PORT, debug=DEBUG)
+    # NOTE: debug=False and use_reloader=False prevents the Werkzeug watcher restarting
+    app.run(host=HOST, port=PORT, debug=False, use_reloader=False)
