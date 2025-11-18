@@ -1,3 +1,103 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:69d13307bfcf52aa880d0c40a9d2b45a9fa09edc6e85a5fec15d945f8ee22f0b
-size 2926
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stock Price Prediction — LSTM</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Plotly -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <!-- CSS (Flask static) -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+  <!-- subtle gradient background -->
+  <div class="gradient-bg" aria-hidden="true"></div>
+
+  <!-- main card -->
+  <div class="container glass" role="main" aria-labelledby="page-title">
+
+    <header style="margin-bottom:6px;">
+      <h1 id="page-title">Stock Price Prediction <span class="highlight">— LSTM</span></h1>
+      <p class="subtitle">Predict future stock prices using Deep Learning (LSTM).</p>
+    </header>
+
+    <form id="predict-form" aria-label="Prediction form">
+      <div class="form-grid" role="group" aria-labelledby="form-grid-title">
+        <!-- Row 1 -->
+        <div class="input-group">
+          <label for="ticker">Ticker</label>
+          <input id="ticker" name="ticker" value="AAPL" autocomplete="off" />
+        </div>
+
+        <div class="input-group">
+          <label for="start">Start Date</label>
+          <input id="start" name="start" type="date" value="2018-01-01" />
+        </div>
+
+        <div class="input-group">
+          <label for="end">End Date</label>
+          <input id="end" name="end" type="date" value="2026-01-01" />
+        </div>
+
+        <!-- Row 2 -->
+        <div class="input-group">
+          <label for="lookback">Lookback (timesteps)</label>
+          <input id="lookback" name="lookback" type="number" value="60" min="1" />
+        </div>
+
+        <div class="input-group">
+          <label for="epochs">Epochs</label>
+          <input id="epochs" name="epochs" type="number" value="10" min="1" />
+        </div>
+
+        <div class="input-group">
+          <label for="future_days">Future Days (business days)</label>
+          <input id="future_days" name="future_days" type="number" value="60" min="0" />
+        </div>
+      </div>
+
+      <!-- toggles -->
+      <div class="controls-row" role="group" aria-label="Chart options">
+        <label class="small-checkbox">
+          <input type="checkbox" id="toggle_rangeslider" checked />
+          Show range slider
+        </label>
+
+        <label class="small-checkbox">
+          <input type="checkbox" id="toggle_smoothing" checked />
+          Smooth curve
+        </label>
+
+        <label class="small-checkbox">
+          <input type="checkbox" id="toggle_recent_markers" checked />
+          Show recent markers
+        </label>
+      </div>
+
+      <div class="btn-wrap">
+        <button type="submit" class="btn-gradient" aria-label="Run Prediction">🚀 Run Prediction</button>
+      </div>
+    </form>
+
+    <!-- status and metrics -->
+    <div id="status" role="status" aria-live="polite" style="margin-top:12px;"></div>
+    <div id="metrics" style="margin-top:6px;"></div>
+
+    <!-- chart container -->
+    <div id="chart" class="chart" role="region" aria-label="Prediction chart"></div>
+  </div>
+
+  <footer>
+    <p>Made with Flask, TensorFlow &amp; Plotly</p>
+  </footer>
+
+  <!-- App script (Flask static) -->
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
