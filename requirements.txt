@@ -1,0 +1,9 @@
+flask
+flask-cors
+yfinance
+numpy
+pandas
+scikit-learn
+tensorflow>=2.9
+plotly 
+gunicorn==20.1.0
